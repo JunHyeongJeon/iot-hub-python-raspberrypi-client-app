@@ -74,7 +74,7 @@ if not is_correct_connection_string():
     telemetry.send_telemetry_data(None, EVENT_FAILED, "Device connection string is not correct.")
     sys.exit(0)
 
-MSG_TXT = "{\"deviceId\": \"Raspberry Pi - Python\",\"temperature\": %f,\"humidity\": %f}"
+MSG_TXT = "{\"device_type\": \"T\",\"device_id\": \"0000\",\"event\": \"none\",\"timestamp\": %f,\"data\": %f}"
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(config.GPIO_PIN_ADDRESS, GPIO.OUT)
@@ -205,9 +205,10 @@ def iothub_client_sample_run():
                 print ( "IoTHubClient sending %d messages" % MESSAGE_COUNT )
                 temperature = sensor.read_temperature()
                 humidity = sensor.read_humidity()
+                timeStamp = time.time()
                 msg_txt_formatted = MSG_TXT % (
-                    temperature,
-                    humidity)
+                    timeStamp,
+                    temperature)
                 print (msg_txt_formatted)
                 message = IoTHubMessage(msg_txt_formatted)
                 # optional: assign ids
