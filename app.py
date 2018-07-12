@@ -207,11 +207,16 @@ def iothub_client_sample_run():
                 temperature = sensor.read_temperature()
                 humidity = sensor.read_humidity()
                 timeStamp = time.time()
+                dataValue = 0
+                if DEVICE_TYPE=="T":
+                    dataValue = temperature
+                else : 
+                    dataValue = humidity
                 msg_txt_formatted = MSG_TXT % (
                     DEVICE_TYPE,
                     DEVICE_ID,
                     timeStamp,
-                    temperature)
+                    dataValue)
                 print (msg_txt_formatted)
                 message = IoTHubMessage(msg_txt_formatted)
                 # optional: assign ids
