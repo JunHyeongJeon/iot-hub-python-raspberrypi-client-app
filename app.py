@@ -11,7 +11,7 @@ from iothub_client import IoTHubClient, IoTHubClientError, IoTHubTransportProvid
 from iothub_client import IoTHubMessage, IoTHubMessageDispositionResult, IoTHubError, DeviceMethodReturnValue
 import config as config
 from BME280SensorSimulator import BME280SensorSimulator
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 from Adafruit_BME280 import *
 import re
 from telemetry import Telemetry
@@ -76,8 +76,8 @@ if not is_correct_connection_string():
 
 MSG_TXT = "{\"device_type\": \"T\",\"device_id\": \"0000\",\"event\": \"none\",\"timestamp\": %f,\"data\": %f}"
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(config.GPIO_PIN_ADDRESS, GPIO.OUT)
+# GPIO.setmode(GPIO.BCM)
+# GPIO.setup(config.GPIO_PIN_ADDRESS, GPIO.OUT)
 
 def receive_message_callback(message, counter):
     global RECEIVE_CALLBACKS
@@ -236,9 +236,9 @@ def iothub_client_sample_run():
     print_last_message_time(client)
 
 def led_blink():
-    GPIO.output(config.GPIO_PIN_ADDRESS, GPIO.HIGH)
-    time.sleep(config.BLINK_TIMESPAN / 1000.0)
-    GPIO.output(config.GPIO_PIN_ADDRESS, GPIO.LOW)
+    # GPIO.output(config.GPIO_PIN_ADDRESS, GPIO.HIGH)
+    # time.sleep(config.BLINK_TIMESPAN / 1000.0)
+    # GPIO.output(config.GPIO_PIN_ADDRESS, GPIO.LOW)
 
 def usage():
     print ( "Usage: iothub_client_sample.py -p <protocol> -c <connectionstring>" )
