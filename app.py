@@ -104,7 +104,7 @@ def send_confirmation_callback(message, result, user_context):
     print ( "    Properties: %s" % key_value_pair )
     SEND_CALLBACKS += 1
     print ( "    Total calls confirmed: %d" % SEND_CALLBACKS )
-    led_blink()
+    # led_blink()
 
 
 def device_twin_callback(update_state, payload, user_context):
@@ -235,7 +235,7 @@ def iothub_client_sample_run():
 
     print_last_message_time(client)
 
-def led_blink():
+# def led_blink():
     # GPIO.output(config.GPIO_PIN_ADDRESS, GPIO.HIGH)
     # time.sleep(config.BLINK_TIMESPAN / 1000.0)
     # GPIO.output(config.GPIO_PIN_ADDRESS, GPIO.LOW)
