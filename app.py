@@ -75,7 +75,7 @@ if not is_correct_connection_string():
     telemetry.send_telemetry_data(None, EVENT_FAILED, "Device connection string is not correct.")
     sys.exit(0)
 
-MSG_TXT = "{\"device_type\": %f,\"device_id\": %f,\"event\": \"none\",\"timestamp\": %f,\"data\": %f}"
+MSG_TXT = "{\"device_type\": %s,\"device_id\": %d,\"event\": \"none\",\"timestamp\": %f,\"data\": %f}"
 
 # GPIO.setmode(GPIO.BCM)
 # GPIO.setup(config.GPIO_PIN_ADDRESS, GPIO.OUT)
