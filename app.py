@@ -55,8 +55,8 @@ PROTOCOL = IoTHubTransportProvider.MQTT
 # "HostName=<host_name>;DeviceId=<device_id>;SharedAccessKey=<device_key>"
 telemetry = Telemetry()
 
-if len(sys.argv) < 2:
-    print ( "You need to provide the device connection string as command line arguments." )
+if len(sys.argv) < 4:
+    print ( "You need to provide the device <type>, <id>, <connection string> as command line arguments." )
     telemetry.send_telemetry_data(None, EVENT_FAILED, "Device connection string is not provided")
     sys.exit(0)
 
@@ -66,15 +66,16 @@ def is_correct_connection_string():
         return True
     else:
         return False
-
-CONNECTION_STRING = sys.argv[1]
+DEVICE_TYPE = sys.argv[1]
+DEVICE_ID = sys.argv[2]
+CONNECTION_STRING = sys.argv[3]
 
 if not is_correct_connection_string():
     print ( "Device connection string is not correct." )
     telemetry.send_telemetry_data(None, EVENT_FAILED, "Device connection string is not correct.")
     sys.exit(0)
 
-MSG_TXT = "{\"device_type\": \"T\",\"device_id\": \"0000\",\"event\": \"none\",\"timestamp\": %f,\"data\": %f}"
+MSG_TXT = "{\"device_type\": %f,\"device_id\": %f,\"event\": \"none\",\"timestamp\": %f,\"data\": %f}"
 
 # GPIO.setmode(GPIO.BCM)
 # GPIO.setup(config.GPIO_PIN_ADDRESS, GPIO.OUT)
@@ -207,6 +208,8 @@ def iothub_client_sample_run():
                 humidity = sensor.read_humidity()
                 timeStamp = time.time()
                 msg_txt_formatted = MSG_TXT % (
+                    DEVICE_TYPE,
+                    DEVICE_ID,
                     timeStamp,
                     temperature)
                 print (msg_txt_formatted)
