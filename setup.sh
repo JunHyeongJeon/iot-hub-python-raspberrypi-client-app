@@ -122,14 +122,14 @@ else
 fi
 checkpython $INPUT_PYTHON_VERSION
 
-sudo apt-get update
+ apt-get update
 
-sudo apt-get install -y cmake build-essential curl libcurl4-openssl-dev libssl-dev uuid-dev python-dev python-smbus
+ apt-get install -y cmake build-essential curl libcurl4-openssl-dev libssl-dev uuid-dev python-dev python-smbus
 
 if [[ $PYTHON_VERSION == 2.7 ]]; then
-    sudo apt-get install -y python-pip
+     apt-get install -y python-pip
 else
-    sudo apt-get install -y python3-pip
+     apt-get install -y python3-pip
 fi
 
 git clone https://github.com/Azure/azure-iot-sdk-python.git --recursive
@@ -140,20 +140,20 @@ cd ../../device/samples
 cp iothub_client.so ../../../iothub_client.so
 
 if [[ $PYTHON_VERSION == 2.7 ]]; then
-    sudo pip install RPi.GPIO
-    sudo pip install applicationinsights
+     pip install RPi.GPIO
+     pip install applicationinsights
 else
-    sudo pip3 install RPi.GPIO
-    sudo pip3 install applicationinsights
+     pip3 install RPi.GPIO
+     pip3 install applicationinsights
 fi
 
 git clone https://github.com/adafruit/Adafruit_Python_GPIO.git
 cd Adafruit_Python_GPIO
 
 if [[ $PYTHON_VERSION == 2.7 ]]; then
-    sudo python setup.py install
+     python setup.py install
 else
-    sudo python3 setup.py install
+     python3 setup.py install
 fi
 
 cd ..
